@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sonuç Analizi</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-light">
+    <div class="container py-5">
+      <div class="card shadow p-4">
+        <h3 class="text-center mb-4">📊 Öğrenci Sonuç Analizi</h3>
+        <div class="mb-3">
+          <label for="studentName">Öğrenci Ad Soyad:</label>
+          <input
+            type="text"
+            id="studentName"
+            class="form-control"
+            placeholder="Ad Soyad"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="answerKey">Cevap Anahtarı (txt):</label>
+          <input
+            type="file"
+            id="answerKey"
+            class="form-control"
+            accept=".txt"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="studentAnswers">Öğrenci Cevapları (txt):</label>
+          <input
+            type="file"
+            id="studentAnswers"
+            class="form-control"
+            accept=".txt"
+          />
+        </div>
+        <button id="analyze-button" class="btn btn-primary w-100">
+          Analiz Et
+        </button>
+        <div id="result" class="mt-4"></div>
+        <a href="files/cevap_kagidi.txt" download class="btn btn-success">
+    📥 Boş Cevap Kağıdını İndir
+  </a>
+        <div class="text-center mt-4">
+          <a
+            href="http://ogretmen.ardahasanardali.com.tr/"
+            class="btn btn-outline-secondary"
+          >
+            ⬅ Anasayfaya Dön
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- jsPDF ve AutoTable -->
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <!--script-->
+    <script src="script.js"></script>
+  </body>
+</html>
