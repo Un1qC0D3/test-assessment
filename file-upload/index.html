@@ -2,40 +2,34 @@
 <html lang="tr">
   <head>
     <meta charset="UTF-8" />
-    <title>PDF Yükleme</title>
+    <title>PDF ve Cevap Anahtarı Yükleme</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
     <style>
-    #overlay {
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(255,255,255,0.8);
-  z-index: 9999;
-  text-align: center;
-  padding-top: 200px;
-  font-weight: bold;
-  font-size: 20px;
-  justify-content: center;
-  align-items: center;
-  
-}
-
-#overlay.show {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-#overlay .spinner-border {
-  width: 3rem;
-  height: 3rem;
-}
-</style>
+      #overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.8);
+        z-index: 9999;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      #overlay.show {
+        display: flex;
+      }
+      #overlay .spinner-border {
+        width: 3rem;
+        height: 3rem;
+      }
+    </style>
   </head>
   <body class="bg-light">
     <!-- Yükleme Ekranı -->
@@ -48,41 +42,139 @@
 
     <div class="container py-5">
       <div class="card shadow p-4 mx-auto" style="max-width: 500px">
-        <h3 class="text-center mb-4">📄 PDF Dosyalarını Yükle</h3>
+        <h3 class="text-center mb-4">📄 PDF ve Cevap Anahtarı Yükle</h3>
 
         <div class="mb-3">
-          <label for="sozel-file" class="form-label fw-bold">Sözel Oturum Yükle</label>
-          <input type="file" class="form-control" id="sozel-file" accept="application/pdf" />
+          <label for="sozel-file" class="form-label fw-bold"
+            >Sözel Oturum Yükle</label
+          >
+          <input
+            type="file"
+            class="form-control"
+            id="sozel-file"
+            accept="application/pdf"
+          />
         </div>
 
         <div class="mb-3">
-          <label for="sayisal-file" class="form-label fw-bold">Sayısal Oturum Yükle</label>
-          <input type="file" class="form-control" id="sayisal-file" accept="application/pdf" />
+          <label for="sayisal-file" class="form-label fw-bold"
+            >Sayısal Oturum Yükle</label
+          >
+          <input
+            type="file"
+            class="form-control"
+            id="sayisal-file"
+            accept="application/pdf"
+          />
         </div>
 
-        <button class="btn btn-primary w-100" id="upload-btn" onclick="uploadPDFs()" disabled>
-          Yüklemeyi Gerçekleştir
-        </button>
+        <div class="mb-3">
+          <label for="cevap-file" class="form-label fw-bold"
+            >Sınav Cevap Anahtarı (txt)</label
+          >
+          <input
+            type="file"
+            class="form-control"
+            id="cevap-file"
+            accept=".txt"
+          />
+        </div>
+
+        <div class="text-center mt-1">
+          <button
+            class="btn btn-outline-info w-100"
+            data-bs-toggle="modal"
+            data-bs-target="#yardimModal"
+          >
+            ℹ️ Yardım
+          </button>
+        </div>
+
+        <div class="text-center mt-4">
+          <button
+            class="btn btn-primary w-100"
+            id="upload-btn"
+            onclick="uploadPDFs()"
+            disabled
+          >
+            Yüklemeyi Gerçekleştir
+          </button>
+        </div>
 
         <div id="message" class="mt-3 text-center"></div>
+        <!-- YARDIM MODAL -->
+        <div
+          class="modal fade"
+          id="yardimModal"
+          tabindex="-1"
+          aria-labelledby="yardimModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="yardimModalLabel">
+                  Yardım ve Bilgilendirme
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Kapat"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <ul>
+                  <li>
+                    <strong>Sözel</strong> ve
+                    <strong>Sayısal</strong> oturumlarının dosyalarını
+                    <strong>PDF</strong> formatında,
+                    <strong>Cevap Anahtarı</strong> dosyasını ise
+                    <a href="files/cevap_kagidi.txt" download>buradaki</a>
+                    örnek TXT dosyasındaki formata uygun olarak TXT formatında
+                    yüklemelisiniz.
+                  </li>
+                  <li>
+                    Yükleme tamamlanınca sistem sizi otomatik olarak ana sayfaya
+                    yönlendirecektir.
+                  </li>
+                  <li>
+                    Yükleme sırasında bir hata olursa tekrar deneyebilirsiniz.
+                  </li>
+                  <li>
+                    Cevap anahtarı dosyası <code>DERS ADI</code> ve altında
+                    <code>ABC...</code> cevaplar olacak şekilde düzenlenmelidir.
+                  </li>
+                  <li>
+                    Detaylı bilgi için aşağıdaki videoyu izleyebilirsiniz.
+                  </li>
+                  <iframe
+                    src="https://bahcesehirokullari-my.sharepoint.com/personal/ardahasan_ardali_bahcesehir_k12_tr/_layouts/15/embed.aspx?UniqueId=ff1161eb-ad0d-448c-b62a-e3b8a499b359&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create"
+                    width="400"
+                    height="200"
+                    frameborder="0"
+                    scrolling="no"
+                    allowfullscreen
+                    title="Cevap Anahtarı Düzenleme ve Seans Yükleme.mp4"
+                  ></iframe>
+                </ul>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Kapat
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="script.js"></script>
-    <script>
-  const sozelInput = document.getElementById("sozel-file");
-  const sayisalInput = document.getElementById("sayisal-file");
-  const uploadBtn = document.getElementById("upload-btn");
-
-  function checkFilesSelected() {
-    const isSozel = sozelInput.files && sozelInput.files.length > 0;
-    const isSayisal = sayisalInput.files && sayisalInput.files.length > 0;
-    uploadBtn.disabled = !(isSozel && isSayisal);
-  }
-
-  sozelInput.addEventListener("change", checkFilesSelected);
-  sayisalInput.addEventListener("change", checkFilesSelected);
-</script>
-
   </body>
 </html>
